@@ -1,9 +1,6 @@
-sudo curl https://raw.githubusercontent.com/GudimArt/nixos/main/disk-config.nix -o /tmp/disko-config.nux
+sudo curl https://raw.githubusercontent.com/GudimArt/nixos/main/disk-config.nix -o /tmp/disk-config.nix
 
-sudo nix \
-  --experimental-features "nix-command flakes" \
-  run github:nix-community/disko -- \
-  --mode disko /tmp/disko-config.nix
+sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko /tmp/disko-config.nix
 
 sudo nixos-generate-config --no-filesystems --root /mnt
 
