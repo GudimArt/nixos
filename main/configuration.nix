@@ -8,7 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      #./disk-config.nix
+      ./disk-config.nix
       ./modules/bundle.nix
     ];
 

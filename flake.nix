@@ -12,8 +12,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+   
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
   };
+
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
       let
         system = "x86_64-linux";
@@ -26,6 +29,7 @@
           };
           modules = [
             ./main/configuration.nix
+            disko.nixosModules.disko
           ];
         };
 
