@@ -17,7 +17,7 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, disko, ... }@inputs:
       let
         system = "x86_64-linux";
       in {
@@ -28,7 +28,7 @@
             inherit inputs system;
           };
           modules = [
-            ./main/configuration.nix
+            ./configuration.nix
             disko.nixosModules.disko
           ];
         };
