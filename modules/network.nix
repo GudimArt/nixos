@@ -1,5 +1,5 @@
 {
- networking.hostName = "nix-sys"; # Define your hostname.
+  networking.hostName = "nix-sys"; # Define your hostname.
 
   # Enable networking
   networking.networkmanager.enable = true;

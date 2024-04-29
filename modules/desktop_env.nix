@@ -1,8 +1,8 @@
 {
-  services.xserver =
+  services =
   {
     # Enable the X11 windowing system.
-    enable = true;
+    xserver.desktopManager.plasma5.enable = false;
 
     # Enable the KDE Plasma Desktop Environment.
     displayManager.sddm.enable = true;
@@ -10,10 +10,10 @@
     displayManager.sddm.wayland.enable = true;
 
     #Configure keymap in X11;
-    xkbModel = "microsoft";
-    layout = "us,ru";
-    xkbVariant = "winkeys";
-    xkbOptions = "grp:caps_toggle,grp_led:caps";
+    xserver.xkbModel = "microsoft";
+    xserver.layout = "us,ru";
+    xserver.xkbVariant = "winkeys";
+    xserver.xkbOptions = "grp:caps_toggle,grp_led:caps";
 
     # Enable automatic login for the user.
     displayManager.autoLogin.enable = true;

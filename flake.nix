@@ -3,18 +3,15 @@
 
   inputs = {
     # NixOS package
-    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixpkgs-23.11-darwin";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-master.url = "https://nixos.org/channels/master";
+    nixpkgs-stable.url = "https://nixos.org/channels/nixpkgs-23.11-darwin";
+    nixpkgs-unstable.url = "https://nixos.org/channels/nixpkgs-unstable";
 
     # Environment/system management
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-   
-    disko.url = "github:nix-community/disko";
-    disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, disko, ... }@inputs:
@@ -29,7 +26,6 @@
           };
           modules = [
             ./configuration.nix
-            disko.nixosModules.disko
           ];
         };
 
