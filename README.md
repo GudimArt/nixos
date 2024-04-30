@@ -10,8 +10,6 @@ sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos
 sudo nix-channel --remove unstable
 sudo nix-channel --update
 
-sudo nix --experimental-features "nix-command flakes" flake lock
-
 sudo nixos-install --root /mnt --flake /mnt --flake /mnt/etc/nixos/.#nix-sys
 
 
