@@ -14,8 +14,9 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, disko}:{
-    let system = "x86_64-linux";
+  outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, disko}:
+    let
+      system = "x86_64-linux";
     in {
 
       nixosConfigurations.nix-sys = nixpkgs-unstable.lib.nixosSystem {
@@ -36,6 +37,6 @@
         modules = [ ./home-manager/users/angelina.nix ];
       };
     };
-  }
+  
 }
 
