@@ -3,9 +3,8 @@
 
   inputs = {
     # NixOS package
-    nixpkgs-master.url = "https://nixos.org/channels/master";
-    nixpkgs-stable.url = "https://nixos.org/channels/nixpkgs-23.11-darwin";
-    nixpkgs-unstable.url = "https://nixos.org/channels/nixpkgs-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Environment/system management
     home-manager = {
