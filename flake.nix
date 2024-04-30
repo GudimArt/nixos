@@ -15,16 +15,11 @@
   };
 
   outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, disko}:{
-    let {
-      system = "x86_64-linux";
-    }
+    let system = "x86_64-linux";
     in {
 
       nixosConfigurations.nix-sys = nixpkgs-unstable.lib.nixosSystem {
-        specialArgs = {       
-          pkgs-stable = import  nixpkgs-stable {inherit system; config.allowUnfree = true;};
-          inherit inputs system;
-        };
+        inherit system;
         modules = [
           ./configuration.nix
           disko.nixosModules.disko
