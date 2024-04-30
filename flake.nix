@@ -14,7 +14,7 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, disko, ... }@inputs:
+  outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, disko, ... }@inputs:
       let
         system = "x86_64-linux";
       in {
@@ -31,11 +31,11 @@
 
 
         homeConfigurations.artem = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.${system};
+          pkgs = nixpkgs-unstable.legacyPackages.${system};
           modules = [ ./home-manager/users/artem.nix ];
         };
         homeConfigurations.angelina = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.${system};
+          pkgs = nixpkgs-unstable.legacyPackages.${system};
           modules = [ ./home-manager/users/angelina.nix ];
         };
       };
