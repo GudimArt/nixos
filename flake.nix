@@ -7,10 +7,11 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Environment/system management
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, disko, ... }@inputs:
@@ -18,9 +19,9 @@
         system = "x86_64-linux";
       in {
 
-        nixosConfigurations.nix-sys = nixpkgs.lib.nixosSystem {
+        nixosConfigurations.nix-sys = nixpkgs-unstable.lib.nixosSystem {
           specialArgs = {       
-            pkgs-unstable = import nixpkgs-unstable {inherit system; config.allowUnfree = true;};
+            pkgs-stable = import  nixpkgs-stable {inherit system; config.allowUnfree = true;};
             inherit inputs system;
           };
           modules = [
