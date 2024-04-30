@@ -14,30 +14,33 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, disko, ... }@inputs:
-      let
-        system = "x86_64-linux";
-      in {
+  outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, disko}:{
+    let {
+      system = "x86_64-linux";
+    }
+    in {
 
-        nixosConfigurations.nix-sys = nixpkgs-unstable.lib.nixosSystem {
-          specialArgs = {       
-            pkgs-stable = import  nixpkgs-stable {inherit system; config.allowUnfree = true;};
-            inherit inputs system;
-          };
-          modules = [
-            ./configuration.nix
-          ];
+      nixosConfigurations.nix-sys = nixpkgs-unstable.lib.nixosSystem {
+        specialArgs = {       
+          pkgs-stable = import  nixpkgs-stable {inherit system; config.allowUnfree = true;};
+          inherit inputs system;
         };
-
-
-        homeConfigurations.artem = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs-unstable.legacyPackages.${system};
-          modules = [ ./home-manager/users/artem.nix ];
-        };
-        homeConfigurations.angelina = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs-unstable.legacyPackages.${system};
-          modules = [ ./home-manager/users/angelina.nix ];
-        };
+        modules = [
+          ./configuration.nix
+          disko.nixosModules.disko
+        ];
       };
+
+
+      homeConfigurations.artem = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs-unstable.legacyPackages.${system};
+        modules = [ ./home-manager/users/artem.nix ];
+      };
+      homeConfigurations.angelina = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs-unstable.legacyPackages.${system};
+        modules = [ ./home-manager/users/angelina.nix ];
+      };
+    };
+  }
 }
 
