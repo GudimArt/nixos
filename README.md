@@ -17,4 +17,4 @@ sudo nixos-install --root /mnt --flake /mnt --flake /mnt/etc/nixos/.#nix-sys
 
 ----------
 
-sudo nix --extra-experimental-features 'flakes nix-command' run github:nix-community/disko#disko-install -- --flake "github:GudimArt/nixos/main#nix-sys" --write-efi-boot-entries --disk my-disk /dev/sda
+sudo nix --extra-experimental-features 'flakes nix-command' run github:nix-community/disko#disko-install -- --flake "github:GudimArt/nixos/main#nix-sys" --disk my-disk /dev/sda
